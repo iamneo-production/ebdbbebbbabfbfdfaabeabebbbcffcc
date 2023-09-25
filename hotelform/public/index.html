@@ -1,12 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Avengers</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Details Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h1{
+            text-align: center;
+        }
+        form {
+            border-radius: 7px;
+            border: 1px solid;
+            width: 45%;
+            display: grid;
+            padding: 12px;
+            margin-left: 26%;
+        }
+        label, input, select, button {
+            display: block;
+            margin-bottom: 10px;
+            padding: 5px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: 20px;
+            margin-left: 10%;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
 </head>
 <body>
-  
+    <h1>Hotel Details Form</h1>
+    <form id="hotelForm">
+        <label for="hotelName">Hotel Name:</label>
+        <input type="text" id="hotelName" required>
+
+        <label for="location">Location:</label>
+        <input type="text" id="location" required>
+
+        <label for="rating">Rating:</label>
+        <select id="rating" required>
+            <option value="1">1 Star</option>
+            <option value="2">2 Stars</option>
+            <option value="3">3 Stars</option>
+            <option value="4">4 Stars</option>
+            <option value="5">5 Stars</option>
+        </select>
+
+        <label for="pool">Pool:</label>
+        <input type="checkbox" id="pool">
+
+        <label for="gym">Gym:</label>
+        <input type="checkbox" id="gym">
+
+        <label for="spa">Spa:</label>
+        <input type="checkbox" id="spa">
+
+        <button type="submit">Add Hotel</button>
+    </form>
+
+    <table id="hotelTable">
+        <thead>
+            <tr>
+                <th>Hotel Name</th>
+                <th>Location</th>
+                <th>Rating</th>
+                <th>Pool</th>
+                <th>Gym</th>
+                <th>Spa</th>
+            </tr>
+        </thead>
+        <tbody id="hotelList">
+        </tbody>
+    </table>
+
+    <script>
+        const hotelForm = document.getElementById('hotelForm');
+        const hotelTable = document.getElementById('hotelTable');
+        const hotelList = document.getElementById('hotelList');
+
+        hotelForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const hotelName = document.getElementById('hotelName').value;
+            const location = document.getElementById('location').value;
+            const rating = document.getElementById('rating').value;
+            const pool = document.getElementById('pool').checked;
+            const gym = document.getElementById('gym').checked;
+            const spa = document.getElementById('spa').checked;
+
+            const newRow = document.createElement('tr');
+            newRow.innerHTML = `
+                <td>${hotelName}</td>
+                <td>${location}</td>
+                <td>${rating}</td>
+                <td>${pool ? 'Yes' : 'No'}</td>
+                <td>${gym ? 'Yes' : 'No'}</td>
+                <td>${spa ? 'Yes' : 'No'}</td>
+            `;
+
+            hotelList.appendChild(newRow);
+
+            // Clear the form
+            hotelForm.reset();
+        });
+    </script>
 </body>
 </html>
