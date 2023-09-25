@@ -29,8 +29,8 @@ public class SpringappApplication {
                 insertHotel(connection, 102, "Hotel B", "City B", 3.5, false, true, true);
 
                 // Display records
-                String output = displayHotels(connection);
-                System.out.println(output);
+                //String output = displayHotels(connection);
+              //  System.out.println(output);
             } else {
                 System.out.println("Failed to connect to the database");
             }
@@ -53,44 +53,45 @@ public class SpringappApplication {
             preparedStatement.executeUpdate();
         }
     }
-
-    static String displayHotels(Connection connection) {
-        StringBuilder output = new StringBuilder();
-
-        try {
-            if (connection != null) {
-                System.out.println("Connected to the database");
-
-                String query = "SELECT * FROM hotels";
-                try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-                    try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                        while (resultSet.next()) {
-                            int id = resultSet.getInt("id");
-                            String hotelName = resultSet.getString("hotelName");
-                            String location = resultSet.getString("location");
-                            double rating = resultSet.getDouble("rating");
-                            boolean hasPool = resultSet.getBoolean("pool");
-                            boolean hasGym = resultSet.getBoolean("gym");
-                            boolean hasSpa = resultSet.getBoolean("spa");
-
-                            String hotelInfo = "ID: " + id + ", Hotel Name: " + hotelName +
-                                    ", Location: " + location + ", Rating: " + rating +
-                                    ", Pool: " + hasPool + ", Gym: " + hasGym + ", Spa: " + hasSpa;
-
-                            output.append(hotelInfo).append("\n");
-                        }
-                    }
-                }
-            } else {
-                System.out.println("Failed to connect to the database");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return output.toString();
-    }
 }
+
+//     static String displayHotels(Connection connection) {
+//         StringBuilder output = new StringBuilder();
+
+//         try {
+//             if (connection != null) {
+//                 System.out.println("Connected to the database");
+
+//                 String query = "SELECT * FROM hotels";
+//                 try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+//                     try (ResultSet resultSet = preparedStatement.executeQuery()) {
+//                         while (resultSet.next()) {
+//                             int id = resultSet.getInt("id");
+//                             String hotelName = resultSet.getString("hotelName");
+//                             String location = resultSet.getString("location");
+//                             double rating = resultSet.getDouble("rating");
+//                             boolean hasPool = resultSet.getBoolean("pool");
+//                             boolean hasGym = resultSet.getBoolean("gym");
+//                             boolean hasSpa = resultSet.getBoolean("spa");
+
+//                             String hotelInfo = "ID: " + id + ", Hotel Name: " + hotelName +
+//                                     ", Location: " + location + ", Rating: " + rating +
+//                                     ", Pool: " + hasPool + ", Gym: " + hasGym + ", Spa: " + hasSpa;
+
+//                             output.append(hotelInfo).append("\n");
+//                         }
+//                     }
+//                 }
+//             } else {
+//                 System.out.println("Failed to connect to the database");
+//             }
+//         } catch (SQLException e) {
+//             e.printStackTrace();
+//         }
+
+//         return output.toString();
+//     }
+// }
 
 
         
